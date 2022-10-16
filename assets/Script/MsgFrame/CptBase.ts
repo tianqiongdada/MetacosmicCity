@@ -10,6 +10,7 @@ import { Msg } from "./Msg";
 import { MsgCenter } from "./MsgCenter";
 
 
+
 //网络消息基类，继承此基类重写该函数完成注册
 @ccclass
 export default abstract  class CptBase extends cc.Component {
