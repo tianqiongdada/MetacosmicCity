@@ -1,0 +1,14 @@
+
+/**
+ * 所有单例类的基类
+ */
+export default class SingletonClass {
+    protected constructor() { }
+    private static _ins: SingletonClass;
+    public static ins() {
+        if (!this._ins) {
+            this._ins = new this;
+        }
+        return this._ins;
+    }
+}
