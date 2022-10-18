@@ -7,6 +7,8 @@ export class WebSocketEx extends SingletonClass
     private  client:WebSocket = null;
     private  isConn:boolean = false;
 
+    public static ins(): WebSocketEx {
+        return super.ins() as WebSocketEx;
     }
 
     initNet() 
