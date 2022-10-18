@@ -28,6 +28,7 @@ export default class Main extends CptBase {
     }
 
     RecvMsg(msg: Msg): void {
+    protected RecvMsg(msg: Msg): void {
         
     }
 }
