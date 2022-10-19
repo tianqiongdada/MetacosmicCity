@@ -17,6 +17,10 @@ export default class Main extends CptBase {
         return [MsgCmd.Game];
     }
 
+    RecvMsg(msg: Msg): void {
+        
+    }
+
     protected onLoad(): void {
         super.onLoad();
 
@@ -27,7 +31,5 @@ export default class Main extends CptBase {
 
     }
 
-    RecvMsg(msg: Msg): void {
-        
-    }
+   
 }

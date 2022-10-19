@@ -1,21 +1,14 @@
+import SingletonClass from "../base/SingletonClass";
 import { MsgCenter } from "./MsgCenter";
 
 //websocket管理类，单例模式
-export class WebSocketEx 
+export class WebSocketEx extends SingletonClass
 {
-    private static instance: WebSocketEx = null;
     private  client:WebSocket = null;
     private  isConn:boolean = false;
 
-    private constructor(){
-        
-    }
-
-    static GetInstance(){
-        if(null == this.instance)
-            return new WebSocketEx();
-        
-        return this.instance;
+    public static ins(): WebSocketEx {
+        return super.ins() as WebSocketEx;
     }
 
     initNet() 

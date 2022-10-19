@@ -46,8 +46,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
+<<<<<<< Updated upstream
+      "width": 1280,
+      "height": 720
+=======
       "width": 960,
       "height": 640
+>>>>>>> Stashed changes
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +63,13 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
+<<<<<<< Updated upstream
+        640,
+        360,
+=======
         480,
         320,
+>>>>>>> Stashed changes
         0,
         0,
         0,
@@ -412,7 +422,13 @@
       "__id__": 1
     },
     "_enabled": true,
+<<<<<<< Updated upstream
+    "label": {
+      "__id__": 4
+    },
+=======
     "label": null,
+>>>>>>> Stashed changes
     "text": "hello",
     "_id": ""
   },

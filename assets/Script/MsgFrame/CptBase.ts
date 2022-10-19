@@ -17,15 +17,15 @@ export default abstract  class CptBase extends cc.Component {
 
     protected supportMainCmd:number[] = [];
 
-    //设置支持的
-    abstract  SetSupportMainCmd():number[];
-
-    //接收消息
-    abstract RecvMsg(msg:Msg) : void;
-
     IsSupportCmd(mainCmd:number):boolean{
         return this.supportMainCmd.indexOf(mainCmd) > -1;
     }
+
+    //设置支持的
+    abstract SetSupportMainCmd():number[];
+
+    //接收消息
+    abstract RecvMsg(msg:Msg) : void;
 
     protected onLoad(): void {
         MsgCenter.RegisterMgr(this);
