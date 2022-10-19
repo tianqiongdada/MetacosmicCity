@@ -2,8 +2,6 @@
 /**
  * created  2018/8/8,by work
  */
-
-import GameConfig from "../data/GameConfig";
 export class GameUtils {
     public static screenWidthScale: number = 1;//屏幕缩放的width比例
     private static _isShowLog: boolean = true;
@@ -108,7 +106,7 @@ export class GameUtils {
         let h = time.getHours();
         let mm = time.getMinutes();
         let ss = time.getSeconds();
-        let result:string = y + "-" + m + "-" + d + "  " + h + ":" + mm + ":" + ss;
+        let result: string = y + "-" + m + "-" + d + "  " + h + ":" + mm + ":" + ss;
         return result;
     }
 
