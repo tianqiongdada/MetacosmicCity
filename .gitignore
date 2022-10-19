@@ -51,8 +51,3 @@ Thumbs.db
 #//////////////////////////
 
 .vscode/
-assets/prefabs.meta
-assets/fonts.meta
-assets/prefabs/LoadingPanel.prefab
-*.meta
-assets/Script/Game/Main.ts

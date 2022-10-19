@@ -21,6 +21,4 @@ export class MsgCmd
 {
     static Login = 1;
     static Game = 2;
-    static Map = 3;
-    static Camera = 4;
 }
