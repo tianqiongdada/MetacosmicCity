@@ -1,10 +1,11 @@
 
 import BasePanel from "../base/BasePanel";
 import SingletonClass from "../base/SingletonClass";
+import CommonPanel from "../views/common/CommonPanel";
 import { LoadingPanelMgr } from "./LoadingPanelMgr";
 
 export class PanelMgr extends SingletonClass {
-    private _panelPrefab: cc.Prefab = null;
+    private _commonPrefab: cc.Prefab = null;//通用弹框
     private _isLoadComplte: boolean = true;
     public isShowing: boolean = false;
     private _curOpenPanelArr: string[] = [];//保存当前打开的界面路径名字
@@ -13,46 +14,40 @@ export class PanelMgr extends SingletonClass {
     static ins() {
         return super.ins() as PanelMgr;
     }
-
+    
     // /**
     //  *  通用提示框显示
     //  * @param content 显示文本内容
     //  * @param callBack 按钮回调函数
     //  * @param type panel类型  1 表示有两个按钮的。2表示只有一个按钮的
     //  */
-
-    // public showCommonPanel(content: string, callBack: Function[], type: number = 1, btnRes: cc.SpriteFrame[] = [], isShowExitBtn: boolean = false): void {
-    //     // if (this.isShowing) return;
-    //     // this.isShowing = true;
-    //     let panel: cc.Node;
-    //     if (!this._isLoadComplte) return;
-
-    //     if (this._panelPrefab) {
-    //         panel = cc.instantiate(this._panelPrefab);
-    //         this.initPanel(panel, content, callBack, type, btnRes, isShowExitBtn);
-    //     } else {
-    //         this._isLoadComplte = false;
-    //         cc.resources.load("prefabs/CommonPanelView", function (err, prefab) {
-    //             this._isLoadComplte = true;
-    //             this._panelPrefab = prefab;
-    //             panel = cc.instantiate(prefab);
-    //             this.initPanel(panel, content, callBack, type, btnRes, isShowExitBtn);
-    //         }.bind(this));
-    //     }
-    // }
+    public showCommonPanel(content: string, callBack: Function): void {
+        // if (this.isShowing) return;
+        // this.isShowing = true;
+        let panel: cc.Node;
+        if (!this._isLoadComplte) return;
+        if (this._commonPrefab) {
+            panel = cc.instantiate(this._commonPrefab);
+            this.initPanel(panel, content, callBack);
+        } else {
+            this._isLoadComplte = false;
+            cc.resources.load("prefabs/CommonPanel", function (err, prefab) {
+                this._isLoadComplte = true;
+                this._panelPrefab = prefab;
+                panel = cc.instantiate(prefab);
+                this.initPanel(panel, content, callBack);
+            }.bind(this));
+        }
+    }
 
 
     // /**
     //  * 预加载面板
     //  */
-    // public preloadPanel(): void {
-    //     let self = this;
-    //     if (!self._panelPrefab) {
-    //         cc.resources.load("prefabs/CommonPanelView", function (err, prefab) {
-    //             self._panelPrefab = prefab;
-    //         }.bind(self));
-    //     }
-    // }
+    public init(commonPanel:cc.Prefab): void {
+        let self = this;
+        self._commonPrefab = commonPanel;
+    }
 
 
     /**
@@ -200,16 +195,15 @@ export class PanelMgr extends SingletonClass {
     //  * @param callBack
     //  * @param type
     //  */
-    // private initPanel(panel: cc.Node, content: string, callBack: Function[], type: number, btnRes: cc.SpriteFrame[], isShowExitBtn: boolean = false): void {
-    //     if (!panel) return;
-    //     let curScene = cc.director.getScene().getChildByName("Canvas");
-    //     curScene.addChild(panel);
-    //     let panelView: CommonPanelView = panel.getComponent("CommonPanelView");
-
-    //     // if (panelView) {
-    //     //     panelView.initUI(content, callBack, type, btnRes, isShowExitBtn);
-    //     // }
-    // }
+    private initPanel(panel: cc.Node, content: string, callBack:Function): void {
+        if (!panel) return;
+        let curScene = cc.director.getScene().getChildByName("Canvas");
+        curScene.addChild(panel);
+        let panelView: CommonPanel = panel.getComponent("CommonPanel");
+        if (panelView) {
+            panelView.initUI(content, callBack);
+        }
+    }
 }
 
 window["PanelMgr"] = PanelMgr.ins();
