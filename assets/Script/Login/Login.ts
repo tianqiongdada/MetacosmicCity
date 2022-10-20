@@ -64,7 +64,7 @@ export default class Login extends CptBase {
         }
     }
 
-    
+
     Login() {
         // WebSocketEx.GetInstance().connect("", null);
         // MsgCenter.SendCustomMsg(MsgCmd.Login, 1, null, 0, null);
@@ -72,8 +72,9 @@ export default class Login extends CptBase {
 
     private onLoginBtnHandler(): void {
         let self = this;
-        SdkManager.ins().loginAuthorization(self.loginCallbackHandler.bind(self));
+        // SdkManager.ins().loginAuthorization(self.loginCallbackHandler.bind(self));
         // PanelMgr.ins().showCommonPanel("测试通用弹框", null);
+        SdkManager.ins().testPushTransaction();
     }
 
     private loginCallbackHandler(type, data): void {
