@@ -12,7 +12,7 @@ export class TiledMapTransform extends SingletonClass {
         return super.ins() as TiledMapTransform;
     }
 
-    //tiled地图坐标系转换：
+    //tiled地图坐标系转换
     public tileToOpenGL(angele:tiledAngel, tiledMap:cc.TiledMap, point: cc.Vec2): cc.Vec2 {
         switch(angele){
             case tiledAngel.nomral:
@@ -43,7 +43,7 @@ export class TiledMapTransform extends SingletonClass {
         return cc.v2();
     }
 
-    public openGLToScreen(tiledMap:cc.TiledMap,point: cc.Vec2) {
+    public openGLToScreen(tiledMap:cc.TiledMap, point: cc.Vec2) {
         let mapSize = tiledMap.getMapSize();
         let tileSize = tiledMap.getTileSize();
         let x = point.x - mapSize.width * tileSize.width / 2;
@@ -61,6 +61,7 @@ export class TiledMapTransform extends SingletonClass {
         return cc.v2(x, y);
    }
 
+    //正常方块 tiled地图坐标系转换
    private normalToOpenGL(tiledMap:cc.TiledMap, point: cc.Vec2) {
         let mapSize = tiledMap.getMapSize();
         let tileSize = tiledMap.getTileSize();
@@ -79,7 +80,7 @@ export class TiledMapTransform extends SingletonClass {
         return cc.v2(x, y);
     }
     
-     //45度/45度交错 tiled地图坐标系转换：
+     //45度/45度交错 tiled地图坐标系转换
      private Degress_45ToOpenGL(tiledMap:cc.TiledMap, point: cc.Vec2) {
         let mapSize = tiledMap.getMapSize();
         let tileSize = tiledMap.getTileSize();
