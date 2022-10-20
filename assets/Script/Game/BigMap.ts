@@ -8,12 +8,17 @@
 import EventTargetMgr from "../managers/EventTargetMgr";
 import CptBase from "../MsgFrame/CptBase";
 import { Msg, MsgCmd } from "../MsgFrame/Msg";
+import { MsgCenter } from "../MsgFrame/MsgCenter";
+import { tiledAngel, TiledMapTransform } from "./TiledMapTransform";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class BigMap extends CptBase {
-    bigMap:cc.TiledMap;
+     @property(cc.Camera)
+     mapCamera:cc.Camera;
+
+     bigMap:cc.TiledMap;
 
    //设置支持的
      SetSupportMainCmd():number[]{
@@ -25,35 +30,61 @@ export default class BigMap extends CptBase {
         
      }
 
-     OnTouchStart(event:cc.Event.EventTouch){
-          
+     //获取地图点击坐标
+     TouchTile(event:cc.Event.EventTouch){
+          let touchPoint = event.getStartLocation();
+          console.log('locationPoint:' + touchPoint);
+          let worldPoint:cc.Vec2;
+          this.mapCamera.getScreenToWorldPoint(touchPoint, worldPoint);
+          console.log('worldPoint:' + worldPoint);
+          let mapPoint = TiledMapTransform.ins().openGLToTile( tiledAngel.Degress_45, this.bigMap, worldPoint);
+          console.log('mapPoint:' + mapPoint);
+          let floorLayer:cc.TiledLayer = this.bigMap.getLayer('floor');
+          // let tile = floorLayer.getTiledTileAt(mapPoint.x, mapPoint.y, false);
+          // console.log('tile:' +  tile);
      }
- 
-     OnTouchMove(event:cc.Event.EventTouch){
+
+
+     //地图摄像机控制
+     CameraCtrl (event:cc.Event.EventTouch) : void {
          let touches = event.getTouches();
  
          if (1 == touches.length) {
-             console.log('map 1个触摸点');
+             let delta=event.getDelta(); 
+            console.log('id:' + event.getID());
+            this.mapCamera.node.x -= delta.x;
+            this.mapCamera.node.y -= delta.y;   
+            
          }
  
          else if(2 == touches.length){
-             console.log('map 2个触摸点');
              event.getStartLocation();
+
          }
-          
-     }
- 
-     OnTouchEnd(event:cc.Event.EventTouch){
- 
      }
 
-     protected onLoad(): void {
-        super.onLoad();
+     registerTouchEvent() : void{
+          //触摸
+          this.node.on(cc.Node.EventType.TOUCH_START, (event:cc.Event.EventTouch)=>{
+               this.TouchTile(event);
+          }, this);
+
+          //触摸移动
+          this.node.on(cc.Node.EventType.TOUCH_MOVE, (event:cc.Event.EventTouch)=>{
+               this.CameraCtrl(event);
+
+          }, this);   
+
+          //触摸结束
+          this.node.on(cc.Node.EventType.TOUCH_END, (event:cc.Event.EventTouch)=>{
+
+          }, this);
+     }
  
-        super.onLoad();
-        this.node.on(cc.Node.EventType.TOUCH_START, this.OnTouchStart, this);
-        this.node.on(cc.Node.EventType.TOUCH_MOVE, this.OnTouchMove, this);
-        this.node.on(cc.Node.EventType.TOUCH_END, this.OnTouchEnd, this);
+     protected onLoad(): void {
+          super.onLoad();
+          this.registerTouchEvent(); //触摸事件注册
+
      }
 
      protected onDestroy(): void {
@@ -62,8 +93,9 @@ export default class BigMap extends CptBase {
      }
 
      protected start(): void {
-        this.bigMap = this.getComponent(cc.TiledMap);
-        this.bigMap.getLayer('floor');       
+         this.bigMap = this.getComponent(cc.TiledMap);
+         let floorLayer = this.bigMap.getLayer('floor'); 
+          floorLayer.enableCulling(true);
      }
 
      protected update(dt: number): void {
