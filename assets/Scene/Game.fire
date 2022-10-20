@@ -251,7 +251,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "BigMap",
+    "_name": "bigMap",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -316,7 +316,7 @@
     "_is3DNode": false,
     "_groupIndex": 1,
     "groupIndex": 1,
-    "_id": "b5XOaCwMFE+rZ6radrk+yE"
+    "_id": "53iLswlCVESZ//xl/lbZdw"
   },
   {
     "__type__": "cc.Node",
@@ -378,7 +378,7 @@
     "_is3DNode": false,
     "_groupIndex": 1,
     "groupIndex": 1,
-    "_id": "84lHL6HN9DG7PAOGc52SfZ"
+    "_id": "2eYSdig3lNg6iGYo9F9mb2"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -393,7 +393,7 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_id": "0cWE3157RLXJ/zGv0XCoFo"
+    "_id": "a739PJF+dIlIZB1EdZxpNl"
   },
   {
     "__type__": "cc.Node",
@@ -455,7 +455,7 @@
     "_is3DNode": false,
     "_groupIndex": 1,
     "groupIndex": 1,
-    "_id": "80Htu6aKtMGJ2JZ5qVydva"
+    "_id": "04hDVIlb1NhoYkShOU45/I"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -466,7 +466,7 @@
     },
     "_enabled": true,
     "_materials": [],
-    "_id": "68Fqhc7r1CPYhkCb6mzRJh"
+    "_id": "84KrfK/p5Os6YQTiC69L1y"
   },
   {
     "__type__": "cc.TiledMap",
@@ -477,9 +477,9 @@
     },
     "_enabled": true,
     "_tmxFile": {
-      "__uuid__": "11cc2073-cc22-449f-82b3-62d12abe5c60"
+      "__uuid__": "04d71a90-03d5-407b-a91d-43c19b9877a6"
     },
-    "_id": "aeTIvRqCBGn6X+K5Qd00/a"
+    "_id": "0bdLnlLU5IOp9AhBaTH2Hd"
   },
   {
     "__type__": "cc.Node",
